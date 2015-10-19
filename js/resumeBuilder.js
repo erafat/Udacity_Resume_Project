@@ -15,7 +15,8 @@ var work = {
 			"discription": "Conduct X-ray and CT diagnosis."
 		}		
 	]
-}
+};
+
 
 var projects = {
 	"projects": [
@@ -32,7 +33,8 @@ var projects = {
 			"image": "images/fry.jpg"
 		}
 	]
-}
+};
+
 
 var bio = {
 	"name": "Erafat Rehim",
@@ -50,7 +52,8 @@ var bio = {
 	"skills":[
 		"Javascript", "Python", "Ruby on Rails", "HTML&CSS"
 	]
-}
+};
+
 
 var education = {
 	"schools": {
@@ -118,8 +121,7 @@ var education = {
 			"url": "https://www.coursera.org/course/clinicalneurology"
 		}
 	]
-}
-
+};
 
 
 
@@ -137,23 +139,21 @@ $("#header").append(formattedMsg);
 
 
 
-
-if (bio.skills.length > 0) {
+if (bio.skills.length) {
 	$("#header").append(HTMLskillsStart);
 	
-	for (skill in bio.skills) {
+	for (var skill in bio.skills) {
 		var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
 		$("#skills").append(formattedSkill);
 	}
-}
+};
 
 
 
-var displayWork = function() {
+works.display = function() {
 	$("#workExperience").append(HTMLworkStart);
-	for (job in work.jobs) {
-		
-		
+	
+	for (var job in work.jobs) {
 		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
 		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
 		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
@@ -162,15 +162,15 @@ var displayWork = function() {
 		var formatted = formattedEmployer + formattedTitle + formattedLocation + formattedDates + formattedDiscription;
 		$(".work-entry:last").append(formatted);
 	}
-}
+};
 
-displayWork();
+works.display();
 
 
 projects.display = function() {
 	$("#projects").append(HTMLprojectStart);
 		
-	for (project in projects.projects) {
+	for (var project in projects.projects) {
 		
 		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
 		$(".project-entry:last").append(formattedTitle);
@@ -185,12 +185,12 @@ projects.display = function() {
 		$(".project-entry:last").append(formattedImage);
 	}
 
-}
+};
 
 projects.display();
 
 
-var displayEducation = function() {
+education.display = function() {
 	$("#education").append(HTMLschoolStart);
 	var formattedSchool = HTMLschoolName.replace("%data%", education.schools.name);
 	var formattedDegree	= HTMLschoolDegree.replace("%data%", education.schools.degree);
@@ -210,15 +210,13 @@ var displayEducation = function() {
 		var formattedUrl = HTMLonlineURL.replace("%data%", education.onlineCourses[course].url);
 		$(".education-entry:last").append(formattedTitle + formattedSchools + formattedDates + formattedUrl);
 	}
+};
 
-
-}
-
-displayEducation();
+education.display();
 
 
 
-var displayContact = function() {
+contact.display = function() {
 	var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
 	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
 	var formattedGit = HTMLgithub.replace("%data%",bio.contacts.github);
@@ -226,9 +224,9 @@ var displayContact = function() {
 	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 	var contactInfo = formattedMobile + formattedEmail + formattedGit + formattedTwitter + formattedLocation;
 	$("#footerContacts").append(contactInfo);
-}
+};
 
-displayContact();
+contact.display();
 
 
 $("#mapDiv").append(googleMap);
